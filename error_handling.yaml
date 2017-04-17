@@ -1,0 +1,10 @@
+---
+- hosts: aws
+  tasks:
+    - name: copy file to server
+      copy: src=test.sh dest=/home/ansible/test.sh mode=0755
+    - name: /home/anible/test.sh
+      register: comm_out
+    - debug:
+       msg="STDOUT" - {{ comm_out.stdout}}
+       msg="STDERR" - {{ comm_out.stderr}}
