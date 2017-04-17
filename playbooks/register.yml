@@ -5,4 +5,4 @@
      command: echo "hello there"
      register: hello
    - debug: msg="stdout={{ hello.stdout }}"
-   - debug: msg="sterr={{ hello.sterr }}"
+   - debug: msg="stderr={{ hello.sterr }}"

@@ -1,0 +1,19 @@
+---
+- hosts: aws
+  tasks:
+  - name: upload a file to the target if doesn't exist
+    copy:
+      src: /opt/ansible/program1.sh
+      dest: /home/ansible/program1.sh
+      mode: 0755
+  - name: of line not there then add it
+    lineinfile:
+      state: present
+      dest: /home/ansible/program1.sh
+      regext: '^HOSTNAME='
+      line: HOSTNAME={{ansible_hostname}}
+  - name: Run the program1
+    shell: /home/ansible/program1.sh
+    register: program_output
+  - debug: msg="stdout={{program_output}}"
+  
