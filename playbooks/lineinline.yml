@@ -1,10 +1,16 @@
 ---
 - hosts: aws
   tasks:
-    - name: add hostname to config
+    - name: install apache
+      yum:
+        name: httpd
+        state: latest
+    - name: create file if it doesn't exist
+      file:
+        state: touch
+        path: /var/www/html/index.html
+    - name: ??
       lineinfile:
-        dest: /home/ansible/hostname.conf
-        regexp: ^Hostname=.*
-        insertafter: ^# Hostname=
+        state: present
+        dest: /var/www/html/index.html
         line: Hostname={{ ansible_hostname }}
-    
